@@ -12,7 +12,10 @@
 #include <sys/sendfile.h>
 
 #include <ext/stdio_filebuf.h>
+
+#ifdef _CFRCAT_APP_
 #include "options.hpp"
+#endif
 
 namespace fs = std::filesystem;
 
@@ -135,7 +138,7 @@ void concat(int out_fd, std::vector<int>& fds, jumper_t jumper)
     concat(fd, out_fd, jumper);
 }
 
-void concat(int out_fd, std::vector<int>& fds, std::vector<jumper_t> jumpers)
+void concat(int out_fd, std::vector<int>& fds, std::vector<jumper_t>& jumpers)
 {
   for (size_t i=0; i<fds.size(); i++)
     concat(fds[i], out_fd, jumpers[i]);
@@ -171,6 +174,7 @@ void copy_file(int in, int out)
   sendfile(out, in, NULL, size);
 }
 
+#ifdef _CFRCAT_APP_
 void process(cfrcat_params& params)
 {
   jumper_t jumper;
@@ -200,5 +204,5 @@ void process(cfrcat_params& params)
 
   close(fd_out);
 }
-
+#endif
 }

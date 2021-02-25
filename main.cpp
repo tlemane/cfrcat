@@ -1,3 +1,4 @@
+#define _CFRCAT_APP_
 #include <cfrcat/cfrcat.hpp>
 #include <cfrcat/options.hpp>
 
