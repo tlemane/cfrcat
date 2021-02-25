@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+/bench/
+build.sh
+/cfrcat
+/.vscode
